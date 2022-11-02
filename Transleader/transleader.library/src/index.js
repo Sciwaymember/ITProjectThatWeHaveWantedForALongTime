@@ -3,19 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-
 // import reportWebVitals from './reportWebVitals';
 import { BrowserRouter} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
- const baseUrl = "https://localhost:3000";//document.getElementsByTagName('base')[0].getAttribute('href');
+//  const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 
 root.render(
   <React.StrictMode>
-  {/* <BrowserRouter  basename={baseUrl}> */}
-  <BrowserRouter> 
-    <App />
-  </BrowserRouter>
+    {/* <BrowserRouter  basename={baseUrl}> */}
+    <BrowserRouter> 
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
