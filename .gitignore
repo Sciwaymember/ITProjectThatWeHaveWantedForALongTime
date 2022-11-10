@@ -42,7 +42,7 @@ bld/
 Generated\ Files/
 /.vscode
 Transleader/.vscode/
-
+/devfolder
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
