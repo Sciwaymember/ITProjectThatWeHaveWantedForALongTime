@@ -6,7 +6,6 @@ namespace LibgenApi.LI
 {
     public interface IAuthorsRequester
     {
-
         Task<HttpResponseMessage> FindById(
             int[] ids, AuthorFields[]? fields = null, AuthorAddKeys[]? addkeys = null);
 

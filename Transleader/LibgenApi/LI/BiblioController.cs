@@ -13,7 +13,6 @@ namespace LibgenApi.LI
         ISeriasRequester,
         IWorksRequester
     {
-
         private HttpClient _client;
 
         public BiblioController()
