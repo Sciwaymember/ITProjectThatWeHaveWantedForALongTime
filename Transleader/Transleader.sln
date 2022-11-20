@@ -6,10 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "transleader.library", "transleader.library\transleader.library.esproj", "{FF974F74-2A92-4FAB-9D06-36253C666F6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transleader.LibraryServer", "Transleader.LibraryServer\Transleader.LibraryServer.csproj", "{D5A9F4F4-410D-459E-95B8-91751B9E358A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{429B6CE5-7973-4CD4-A291-13DEC47F3C96} = {429B6CE5-7973-4CD4-A291-13DEC47F3C96}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transleader.LibraryServer.BusinessL", "Transleader.LibraryServer.BusinessL\Transleader.LibraryServer.BusinessL.csproj", "{CF1DFB66-D046-4CE9-9159-5A11FFF4DE21}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibgenApi", "LibgenApi\LibgenApi.csproj", "{4B92D7BB-0927-4886-BE12-1BB607076076}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transleader.LibraryServer.DataAccessL", "Transleader.LibraryServer.DataAccessL\Transleader.LibraryServer.DataAccessL.csproj", "{429B6CE5-7973-4CD4-A291-13DEC47F3C96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +40,10 @@ Global
 		{4B92D7BB-0927-4886-BE12-1BB607076076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B92D7BB-0927-4886-BE12-1BB607076076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B92D7BB-0927-4886-BE12-1BB607076076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429B6CE5-7973-4CD4-A291-13DEC47F3C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429B6CE5-7973-4CD4-A291-13DEC47F3C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429B6CE5-7973-4CD4-A291-13DEC47F3C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429B6CE5-7973-4CD4-A291-13DEC47F3C96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
