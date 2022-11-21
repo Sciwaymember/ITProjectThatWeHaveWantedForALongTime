@@ -1,9 +1,19 @@
 using Transleader.LibraryServer.DataAccessL;
 using Microsoft.EntityFrameworkCore;
+using LibgenApi.IS;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+BookController bookController = new BookController();
+
+using HttpResponseMessage response = 
+    await bookController.GetDateArea(DateMode.last, new DateTime(2018,01,01));
+{
+    response.EnsureSuccessStatusCode();
+    Console.WriteLine(await response.Content.ReadAsStringAsync());
+}
 
 builder.Services.AddDbContext<BookDbContext>(
     options => options.UseSqlServer(

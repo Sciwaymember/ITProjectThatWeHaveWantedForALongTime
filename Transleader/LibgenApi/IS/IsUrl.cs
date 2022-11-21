@@ -1,20 +1,22 @@
 ﻿using LibgenApi.LI.OptionTypes;
+using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
-namespace LibgenApi.LI
+namespace LibgenApi.IS
 {
-    public class Url
+    public class IsUrl
     {
-        private string _url = "https://libgen.li/json.php";
+        private string _url = "https://libgen.is/json.php";
 
-        private BiblioObject _obj;
+        private BookOptionKeys[] _options;
 
-        private BiblioOptionKeys[] _options;
-
-        public Url(BiblioObject obj, BiblioOptionKeys[] options)
+        public IsUrl(BookOptionKeys[] options)
         {
-            _obj = obj;
             _options = options;
         }
 
@@ -25,11 +27,9 @@ namespace LibgenApi.LI
             UriBuilder uriBuilder = new UriBuilder(_url);
             NameValueCollection uriParams = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            uriParams["object"] = _obj.ToString();
-
             for (int i = 0; i < _options.Length; i++)
             {
-                BiblioOptionKeys option = _options[i];
+                BookOptionKeys option = _options[i];
                 uriParams[option.Name.ToString()] = option.Value;
             }
 

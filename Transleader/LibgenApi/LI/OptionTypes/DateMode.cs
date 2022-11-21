@@ -1,7 +1,7 @@
 ﻿
 namespace LibgenApi.LI.OptionTypes
 {
-    public enum DataMode
+    public enum DateMode
     {
         mode,
         last

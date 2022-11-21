@@ -9,8 +9,8 @@ namespace LibgenApi.LI
         Task<HttpResponseMessage> FindById(
             int[] ids, AuthorFields[]? fields = null, AuthorAddKeys[]? addkeys = null);
 
-        Task<HttpResponseMessage> GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        Task<HttpResponseMessage> GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             AuthorFields[]? fields = null, AuthorAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null);
 
