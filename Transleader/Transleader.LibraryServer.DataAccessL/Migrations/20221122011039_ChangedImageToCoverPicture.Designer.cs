@@ -12,8 +12,8 @@ using Transleader.LibraryServer.DataAccessL;
 namespace Transleader.LibraryServer.DataAccessL.Migrations
 {
     [DbContext(typeof(BookDbContext))]
-    [Migration("20221120120147_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221122011039_ChangedImageToCoverPicture")]
+    partial class ChangedImageToCoverPicture
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

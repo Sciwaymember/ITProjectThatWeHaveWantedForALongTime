@@ -17,6 +17,6 @@ namespace Transleader.LibraryServer.DataAccessL.Models
 
         public string? Author { get; set; }
 
-        public string? Image { get; set; }
+        public string? CoverPicture { get; set; }
     }
 }
