@@ -36,12 +36,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> IAuthorsRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> IAuthorsRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             AuthorFields[]? fields = null, AuthorAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.a,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -109,12 +109,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> IEditionsRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> IEditionsRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             EditionFields[]? fields = null, EditionAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.e,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -159,12 +159,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> IFilesRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> IFilesRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             FileFields[]? fields = null, FileAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.f,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -198,12 +198,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> IPublishersRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> IPublishersRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             PublisherFields[]? fields = null, PublisherAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.p,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -237,12 +237,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> ISeriasRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> ISeriasRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             SeriaFields[]? fields = null, SeriaAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.s,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -276,12 +276,12 @@ namespace LibgenApi.LI
                 );
         }
 
-        async Task<HttpResponseMessage> IWorksRequester.GetDataArea(
-            DataMode mode, DateTime timefirst, DateTime? timelast = null,
+        async Task<HttpResponseMessage> IWorksRequester.GetDateArea(
+            DateMode mode, DateTime timefirst, DateTime? timelast = null,
             WorkFields[]? fields = null, WorkAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null)
         {
-            return await GetDataArea(
+            return await GetNewerArea(
                 BiblioObject.w,
                 mode, timefirst, timelast,
                 fields != null && fields.Count() != 0 ? fields.Select(f => f.ToString()).ToArray() : null,
@@ -348,7 +348,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            string url = new Url(
+            string url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                         new BiblioOptionKeys(Option.ids, idsString),
                         new BiblioOptionKeys(Option.fields, fieldsString),
@@ -361,9 +361,9 @@ namespace LibgenApi.LI
             return result;
         }
 
-        private async Task<HttpResponseMessage> GetDataArea(
+        private async Task<HttpResponseMessage> GetNewerArea(
             BiblioObject objectType,
-            DataMode mode, DateTime timefirst, DateTime? timelast,
+            DateMode mode, DateTime timefirst, DateTime? timelast,
             string[]? fields, int[]? addkeys,
             Topic? topic, int? limit1, int? limit2)
         {
@@ -376,7 +376,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            Url url = new Url(
+            LiUrl url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                     new BiblioOptionKeys(Option.mode, mode.ToString()),
                     new BiblioOptionKeys(Option.timefirst, timefirst.ToString()),
@@ -408,7 +408,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            Url url = new Url(
+            LiUrl url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                     new BiblioOptionKeys(Option.id_start, id_start.ToString()),
                     new BiblioOptionKeys(Option.id_end, id_end.ToString()),
@@ -432,7 +432,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            string url = new Url(
+            string url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                         new BiblioOptionKeys(Option.doi, doi),
                         new BiblioOptionKeys(Option.fields, fieldsString),
@@ -459,7 +459,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            string url = new Url(
+            string url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                         new BiblioOptionKeys(Option.dois, doisString),
                         new BiblioOptionKeys(Option.fields, fieldsString),
@@ -480,7 +480,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            string url = new Url(
+            string url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                         new BiblioOptionKeys(Option.isbn, isbn),
                         new BiblioOptionKeys(Option.fields, fieldsString),
@@ -501,7 +501,7 @@ namespace LibgenApi.LI
             string? fieldsString = nameValueCollection["fields"];
             string? addkeysString = nameValueCollection["addkeys"];
 
-            string url = new Url(
+            string url = new LiUrl(
                     objectType, new BiblioOptionKeys[] {
                         new BiblioOptionKeys(Option.md5, md5),
                         new BiblioOptionKeys(Option.fields, fieldsString),

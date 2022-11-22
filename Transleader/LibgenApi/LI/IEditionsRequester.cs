@@ -18,8 +18,8 @@ namespace LibgenApi.LI
         Task<HttpResponseMessage> FindByIsbn(
             string isbn, EditionFields[]? fields = null, EditionAddKeys[]? addkeys = null);
 
-        Task<HttpResponseMessage> GetDataArea(
-            DataMode mode, DateTime timefirs, DateTime? timelast = null,
+        Task<HttpResponseMessage> GetDateArea(
+            DateMode mode, DateTime timefirs, DateTime? timelast = null,
             EditionFields[]? fields = null, EditionAddKeys[]? addkeys = null,
             Topic? topic = null, int? limit1 = null, int? limit2 = null);
 
