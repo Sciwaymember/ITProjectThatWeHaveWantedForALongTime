@@ -8,11 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibgenApi\LibgenApi.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Managers\" />
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Transleader.LibraryServer.DataAccessL\Transleader.LibraryServer.DataAccessL.csproj" />
   </ItemGroup>
 
 </Project>

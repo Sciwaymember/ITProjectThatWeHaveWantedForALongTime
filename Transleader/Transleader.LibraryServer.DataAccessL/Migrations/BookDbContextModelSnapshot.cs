@@ -33,7 +33,7 @@ namespace Transleader.LibraryServer.DataAccessL.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("CoverPicture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ParentId")
