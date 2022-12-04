@@ -1,62 +1,172 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace LibgenApi.IS
 {
     public enum BookFields
     {
-        id, // the LibGen ID
-        title, // – the title of the text
-        volumeinfo, // – the volume number, if the text is part of a multi-volume series
-        series, // – the series that the text is part of
+        /// <summary>
+        /// the LibGen ID
+        /// </summary>
+        id,
+        /// <summary>
+        /// – the title of the text  
+        /// </summary>
+        title, 
+        /// <summary>
+        /// – the volume number, if the text is part of a multi-volume series
+        /// </summary>
+        volumeinfo, 
+        /// <summary>
+        /// – the series that the text is part of
+        /// </summary>
+        series, 
+        /// <summary>
+        /// – the publication date of the text
+        /// </summary>
         periodical,
-        author, // – the author of the text
-        year, // – the publication date of the text
-        edition, // – the edition of the text
-        publisher, // – the publisher of the text
-        city, // – the location of the publisher
-        pages, // – the number of pages in the text
-        language, // – the language of the text
-        topic, // – A number corresponding to the topic of the text; for example, 130 is "Mathematics/Logic"
+        /// <summary>
+        /// – the author of the text
+        /// </summary>
+        author, 
+        year, 
+        /// <summary>
+        /// – the edition of the text
+        /// </summary>
+        edition, 
+        /// <summary>
+        /// – the publisher of the text
+        /// </summary>
+        publisher, 
+        /// <summary>
+        /// – the location of the publisher
+        /// </summary>
+        city, 
+        /// <summary>
+        /// – the number of pages in the text
+        /// </summary>
+        pages, 
+        /// <summary>
+        /// – the language of the text
+        /// </summary>
+        language, 
+        /// <summary>
+        /// – A number corresponding to the topic of the text; for example, 130 is "Mathematics/Logic"
+        /// </summary>
+        topic, 
         library,
         issue,
-        identifier, // – the text's short and long International Standard Book Numbers (not necessarily in that order)
-        issn, ///– the text's International Standard Serial Number
-        asin, // – the text's Amazon Standard Identification Number
-        udc, // – the text's Universal Decimal Classification number
+        /// <summary>
+        /// – the text's short and long International Standard Book Numbers (not necessarily in that order)
+        /// </summary>
+        identifier, 
+        /// <summary>
+        /// – the text's International Standard Serial Number
+        /// </summary>
+        issn, 
+        /// <summary>
+        /// – the text's Amazon Standard Identification Number
+        /// </summary>
+        asin, 
+        /// <summary>
+        /// – the text's Universal Decimal Classification number
+        /// </summary>
+        udc, 
         lbc,
-        ddc, // – the text's Dewey Decimal Classification number
-        lcc, // – the text's Library of Congress Classification number
-        doi, // – the file's Digital Object Identifier
-        googlebookid, // – the text's Google Books ID
-        openlibraryid, // – the text's Open Library ID
+        /// <summary>
+        /// – the text's Dewey Decimal Classification number
+        /// </summary>
+        ddc, 
+        /// <summary>
+        /// – the text's Library of Congress Classification number
+        /// </summary>
+        lcc, 
+        /// <summary>
+        /// – the file's Digital Object Identifier
+        /// </summary>
+        doi, 
+        /// <summary>
+        /// – the text's Google Books ID
+        /// </summary>
+        googlebookid, 
+        /// <summary>
+        /// – the text's Open Library ID
+        /// </summary>
+        openlibraryid, 
         commentary,
         dpi,
         color,
         cleaned,
         orientation,
-        paginated, // – the text is paginated (1) or not (0)
-        scanned, // – the text is scanned from a physical copy (1) or not (0)
-        bookmarked, // – the text has bookmarks (1) or not (0)
-        searchable, // – the text is searchable (1) or not (0)
-        filesize, // – the size of the file in bytes
-        extension, // – the extension of the file (.pdf, .epub, .mobi, etc.)
-        md5, // – the [MD5](http://www.md5.net) hash of the file
-        crc32, // – the file's CRC32 checksum
-        edonkey, // – the file's eDonkey hash
-        aich, // – the text's eMule file hash
-        sha1, // – the file's SHA-1 hash
-        tth, // – the file's Tiger tree hash
+        /// <summary>
+        /// – the text is paginated (1) or not (0)
+        /// </summary>
+        paginated, 
+        /// <summary>
+        /// – the text is scanned from a physical copy (1) or not (0)
+        /// </summary>
+        scanned, 
+        /// <summary>
+        /// – the text has bookmarks (1) or not (0)
+        /// </summary>
+        bookmarked, 
+        /// <summary>
+        /// – the text is searchable (1) or not (0)
+        /// </summary>
+        searchable, 
+        /// <summary>
+        /// – the size of the file in bytes
+        /// </summary>
+        filesize, 
+        /// <summary>
+        /// – the extension of the file (.pdf, .epub, .mobi, etc.)
+        /// </summary>
+        extension, 
+        /// <summary>
+        /// – the [MD5](http://www.md5.net) hash of the file
+        /// </summary>
+        md5, 
+        /// <summary>
+        /// – the file's CRC32 checksum
+        /// </summary>
+        crc32, 
+        /// <summary>
+        /// – the file's eDonkey hash
+        /// </summary>
+        edonkey, 
+        /// <summary>
+        /// – the text's eMule file hash
+        /// </summary>
+        aich, 
+        /// <summary>
+        /// – the file's SHA-1 hash
+        /// </summary>
+        sha1, 
+        /// <summary>
+        /// – the file's Tiger tree hash
+        /// </summary>
+        tth, 
         generic,
-        filename, // – the name of the file in the LibGen database, in the form directory/md5. The directory name is the text's LibGen ID rounded to the nearest thousand, and the MD5 hash is in lowercase. (The directory that each file is located in is also included in the file name.)
+        /// <summary>
+        /// – the name of the file in the LibGen database, in the form directory/md5. The directory name is the text's LibGen ID rounded to the nearest thousand, and the MD5 hash is in lowercase. (The directory that each file is located in is also included in the file name.)
+        /// </summary>
+        filename, 
         visible,
-        locator, // – As far as I can tell, this is the file path of the original file on the machine of whoever uploaded it.
+        /// <summary>
+        /// – As far as I can tell, this is the file path of the original file on the machine of whoever uploaded it.
+        /// </summary>
+        locator, 
         local,
-        timeadded, // – the date/time when the text was added to the database, formatted as YYYY-MM-DD HH:MM:SS
-        timelastmodified, // - the date/time when the text's entry in the database was edited, formatted as YYYY-MM-DD HH:MM:SS
-        coverurl, // – the path to the cover image for the text: the filename followed by a lowercase letter (there's a function to determine the letter for each cover, but I don't know enough PHP to understand it).
+        /// <summary>
+        /// – the date/time when the text was added to the database, formatted as YYYY-MM-DD HH:MM:SS
+        /// </summary>
+        timeadded, 
+        /// <summary>
+        /// - the date/time when the text's entry in the database was edited, formatted as YYYY-MM-DD HH:MM:SS
+        /// </summary>
+        timelastmodified, 
+        /// <summary>
+        /// – the path to the cover image for the text: the filename followed by a lowercase letter (there's a function to determine the letter for each cover, but I don't know enough PHP to understand it).
+        /// </summary>
+        coverurl,
+        descr,
     }
 }

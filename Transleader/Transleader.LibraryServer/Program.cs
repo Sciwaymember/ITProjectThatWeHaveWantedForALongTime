@@ -1,18 +1,17 @@
 using Transleader.LibraryServer.DataAccessL;
 using Microsoft.EntityFrameworkCore;
-using LibgenApi.IS;
 using Transleader.LibraryServer.BusinessL.Repositories;
 using Transleader.LibraryServer.BusinessL.Models;
+using Transleader.LibraryServer.BusinessL;
+using Transleader.LibraryServer.BusinessL.Settings.DbUpdater;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 // Adding dependencies to services for later use in the solution
-builder.Services.AddDbContext<BookDbContext>(
-    options => options.UseSqlServer(
-        ConfigurationExtensions.GetConnectionString(builder.Configuration, "SqlServerBookBase")));
-builder.Services.AddScoped<IRepository<BookModel>, SQLServerBookRepository>();
+builder.Services.AddDbContext<BookDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerBookBase")));
+builder.Services.AddScoped<IRepository<BookBL>, SQLServerBookRepository>();
+builder.Configuration.AddJsonFile("dbUpdaterConfig.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,5 +32,14 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var dbUpdater = new DatabaseUpdater(
+    new DbUpdaterConfig(builder.Configuration),
+    builder.Configuration.GetConnectionString("SqlServerBookBase")))
+{
+    await Task.WhenAny(
+        dbUpdater.canselTask,
+        dbUpdater.UpdateAsync());
+}
 
 app.Run();
