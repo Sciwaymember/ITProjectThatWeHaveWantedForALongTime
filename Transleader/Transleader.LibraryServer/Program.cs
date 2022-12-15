@@ -33,13 +33,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var dbUpdater = new DatabaseUpdater(
+Task.Run(async () =>
+{
+    using (var dbUpdater = new DatabaseUpdater(
     new DbUpdaterConfig(builder.Configuration),
     builder.Configuration.GetConnectionString("SqlServerBookBase")))
-{
-    await Task.WhenAny(
-        dbUpdater.canselTask,
-        dbUpdater.UpdateAsync());
-}
+    {
+        await Task.WhenAny(
+            dbUpdater.canselTask,
+            dbUpdater.UpdateAsync());
+    }
+});
 
 app.Run();
