@@ -3,6 +3,7 @@ using Transleader.LibraryServer.BusinessL.Repositories;
 using Transleader.LibraryServer.BusinessL.Models;
 using Transleader.LibraryServer.Extensions;
 using Transleader.LibraryServer.Models;
+using Transleader.LibraryServer.DataAccessL.Types;
 
 namespace Transleader.LibraryServer.Controllers
 {
@@ -12,35 +13,30 @@ namespace Transleader.LibraryServer.Controllers
     {      
         private readonly ILogger<LibraryController> _logger;
 
-        private readonly IRepository<BookModel> _fabric;
+        private readonly IRepository<BookBL> _db;
 
-        public LibraryController(ILogger<LibraryController> logger, IRepository<BookModel> fabric)
+        public LibraryController(ILogger<LibraryController> logger, IRepository<BookBL> db)
         {
             _logger = logger;
-            _fabric = fabric;
+            _db = db;
         }
 
         //Endpoint of getting book by id
         [HttpGet(Name = "GetBook")]
-        public async Task<BookView?> Get(int id)
+        public async Task<BookPL?> Get(string id)
         {
-            BookModel? bookModel = await _fabric.Read(id);
-            BookView? book = null;
-
-            if (bookModel != null)
-            {
-                book = bookModel.MapToView();
-            }
+            BookBL? bookBL = await _db.ReadAsync(Uid.Parse(id));
+            BookPL? book = bookBL != null ? bookBL.ToPL() : null;
 
             return book;
         }
 
         //Endpoint of creating new db element
         [HttpPost(Name = "CreateBook")]
-        public async void Post(BookView book)
+        public async void Post(BookPL bookPL)
         {
-            BookModel bookModel = book.MapToModel();
-            await _fabric.Create(bookModel);
+            BookBL bookBL = bookPL.ToNewBL();
+            await _db.CreateAsync(bookBL);
         }
     }
 }

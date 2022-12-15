@@ -1,20 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Transleader.LibraryServer.DataAccessL.Types;
+﻿using Transleader.LibraryServer.DataAccessL.Types;
 
-namespace Transleader.LibraryServer.DataAccessL.Models
+namespace Transleader.LibraryServer.Models
 {
-    public class Book
+    public class BookPL
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; }
+        public Uid Id { get; set; }
 
         public int? ParentId { get; set; }
 

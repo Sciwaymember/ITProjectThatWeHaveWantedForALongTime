@@ -1,6 +1,4 @@
-﻿using LibgenApi.LI.OptionTypes;
-using LibgenApi.LI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -24,7 +22,7 @@ namespace LibgenApi.IS
             _client = client;
         }
 
-        public async Task<HttpResponseMessage> FindById(int[] ids, BookFields[]? fields = null)
+        public async Task<HttpResponseMessage> FindByIdAsync(int[] ids, BookFields[]? fields = null)
         {
             string idsString = ids.Count() != 0 ? ids.First().ToString() : throw new ArgumentNullException();
             for (int i = 1; i < ids.Length; i++)
@@ -46,7 +44,7 @@ namespace LibgenApi.IS
             return result;
         }
 
-        public async Task<HttpResponseMessage> GetDateArea(
+        public async Task<HttpResponseMessage> GetDateAreaAsync(
             DateMode mode, DateTime timefirst, DateTime? timelast = null,
             BookFields[]? fields = null, int? limit1 = null, int? limit2 = null)
         {
@@ -75,9 +73,10 @@ namespace LibgenApi.IS
             return result;
         }
 
-        public async Task<HttpResponseMessage> GetNewerArea(
+        public async Task<HttpResponseMessage> GetNewerAreaAsync(
             DateTime timenewer, int idnewer = 0,
-            BookFields[]? fields = null, int? limit1 = null, int? limit2 = null)
+            BookFields[]? fields = null, int? limit1 = null, int? limit2 = null,
+            CancellationToken token = default)
         {
             if (limit1 == null && limit2 != null)
             {
@@ -89,6 +88,7 @@ namespace LibgenApi.IS
 
             string url = new IsUrl(
                     new BookOptionKeys[] {
+                        new BookOptionKeys(Option.mode, "newer"),
                         new BookOptionKeys(Option.timenewer, timenewerString),
                         new BookOptionKeys(Option.idnewer, idnewer.ToString()),
                         new BookOptionKeys(Option.fields, fieldsString),
@@ -97,7 +97,7 @@ namespace LibgenApi.IS
                     }
                     ).ToString();
 
-            HttpResponseMessage result = await _client.GetAsync(url.ToString());
+            HttpResponseMessage result = await _client.GetAsync(url.ToString(), token);
 
             return result;
         }

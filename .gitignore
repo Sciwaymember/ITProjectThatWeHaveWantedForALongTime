@@ -363,3 +363,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Excluded from project elements
+Transleader\LibgenApi\LI\
+/Transleader/Transleader.LibraryServer/dbUpdaterConfig.json
