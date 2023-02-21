@@ -1,4 +1,4 @@
-# ITProjectThatWeHaveWantedForALongTime
+# TLibrary. Book search service
 
 Библиотека книг/ сервис для поиска и скачивания доступных на Libgen книг. (Незавершен)
 
